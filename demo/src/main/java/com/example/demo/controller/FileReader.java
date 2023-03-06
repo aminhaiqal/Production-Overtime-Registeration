@@ -26,50 +26,56 @@ import org.apache.poi.ss.usermodel.WorkbookFactory;
  * |  • The class also provides a few utility methods to help with parsing cell 
  * |    values and formatting dates.
  * |____________________________________________________________________________
+ * |  • Code Complexity: O(n^2)
+ * |____________________________________________________________________________
  */
 
 @RestController
 public class FileReader {
-   @PostMapping("/upload")
-   public String uploadFile(@RequestParam("file") MultipartFile file) throws IOException {
-       System.out.println("Starting to read file...");
-       // Read the Excel file using Apache POI
-       Workbook workbook = WorkbookFactory.create(file.getInputStream());
+    @PostMapping("/upload")
+    public String readExcelFile(@RequestParam("file") MultipartFile file) throws IOException {
+        System.out.println("Starting to read file...");
+        // Read the Excel file using Apache POI
+        Workbook workbook = WorkbookFactory.create(file.getInputStream());
 
-       // Get the first sheet in the workbook
-       Sheet sheet = workbook.getSheetAt(0);
+        // Get the first sheet in the workbook
+        Sheet sheet = workbook.getSheetAt(0);
 
-       // Loop through the rows in the sheet
-       for (Row row : sheet) {
-           // Loop through the cells in the row
-           for (Cell cell : row) {
-            switch (cell.getCellType()) {
-                case STRING:
-                    System.out.print(cell.getStringCellValue() + "\t");
-                    break;
-                case NUMERIC:
-                    if (DateUtil.isCellDateFormatted(cell)) {
-                        System.out.print(cell.getDateCellValue() + "\t");
-                    } else {
-                        System.out.print(cell.getNumericCellValue() + "\t");
-                    }
-                    break;
-                case BOOLEAN:
-                    System.out.print(cell.getBooleanCellValue() + "\t");
-                    break;
-                case FORMULA:
-                    System.out.print(cell.getCellFormula() + "\t");
-                    break;
-                default:
-                    System.out.print("\t");
+        StringBuilder sb = new StringBuilder();
+        // Loop through the rows in the sheet
+        for (Row row : sheet) {
+            // Loop through the cells in the row
+            for (Cell cell : row) {
+                switch (cell.getCellType()) {
+                    case STRING:
+                        sb.append(cell.getStringCellValue()).append("\t");
+                        break;
+                    case NUMERIC:
+                        if (DateUtil.isCellDateFormatted(cell)) {
+                            sb.append(cell.getDateCellValue()).append("\t");
+                        } else {
+                            sb.append(cell.getNumericCellValue()).append("\t");
+                        }
+                        break;
+                    case BOOLEAN:
+                        sb.append(cell.getBooleanCellValue()).append("\t");
+                        break;
+                    case FORMULA:
+                        sb.append(cell.getCellFormula()).append("\t");
+                        break;
+                    default:
+                        sb.append("\t");
+                }
             }
+            sb.append("\n");
         }
-        System.out.println();
-         }
-       // Close the workbook
-       workbook.close();
+        // Close the workbook using try-with-resources
+        try (workbook) {}
 
-       // Return a response
-       return "File uploaded successfully";
-   }
+        // Display response
+        System.out.println(sb.toString());
+
+        return "";
+    }
+
 }
