@@ -38,10 +38,7 @@ public class TableLoader {
                     + "staff_id INT NOT NULL,"
                     + "name MEDIUMTEXT NOT NULL,"
                     + "dept VARCHAR(55),"
-                    + "position VARCHAR(55),"
                     + "section VARCHAR(45) NOT NULL,"
-                    + "line VARCHAR(45),"
-                    + "date_joined DATE NOT NULL,"
                     + "PRIMARY KEY (staff_id)"
                     + ")");
             System.out.println("Table 'staff' created");
