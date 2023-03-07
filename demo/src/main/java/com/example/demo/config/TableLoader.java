@@ -7,6 +7,17 @@ import org.springframework.context.event.EventListener;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Component;
 
+/*
+ * _____________________________________________________________________________
+ * |  • A class that creates database tables using the Spring JDBC template.
+ * |  • This class uses the Spring `JdbcTemplate` to execute SQL queries and create
+ * |    two tables: 'staff' and 'overtime'. If these tables do not already exist in
+ * |    the database, they are created with the specified columns.
+ * |  • The `createTable` method is called automatically when the Spring context is
+ * |    refreshed, thanks to the `@EventListener` annotation.
+ * |____________________________________________________________________________
+ */
+
 @Component
 public class TableLoader {
     private final JdbcTemplate jdbcTemplate;
