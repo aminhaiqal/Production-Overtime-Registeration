@@ -72,7 +72,7 @@ public class FileReader {
             }
             //sb.append("\n");
             String[] result = splitStringBuilder(sb, "\t");
-            //assignString(result);
+            assignString(result);
 
             System.out.println("\n");
             break;
@@ -92,29 +92,39 @@ public class FileReader {
     }
 
     public void assignString (String[] result) {
-        int staff_id = Integer.parseInt(result[0]);
-        String name = result[1];
-        String dept = result[2];
-        String section = result[3];
-        Boolean MON = Boolean.parseBoolean(result[4]);
-        Boolean TUE = Boolean.parseBoolean(result[5]);
-        Boolean WED = Boolean.parseBoolean(result[6]);
-        Boolean THU = Boolean.parseBoolean(result[7]);
-        Boolean FRI = Boolean.parseBoolean(result[8]);
-        Boolean SAT = Boolean.parseBoolean(result[9]);
-        Boolean SUN = Boolean.parseBoolean(result[10]);
+        String staff_id = (result[1]);
+        String staff_name = (result[2]);
+        String staff_department = (result[3]);
+        String staff_section = (result[5]);
 
         System.out.println(staff_id);
-        System.out.println(name);
-        System.out.println(dept);
-        System.out.println(section);
-        System.out.println(MON);
-        System.out.println(TUE);
-        System.out.println(WED);
-        System.out.println(THU);
-        System.out.println(FRI);
-        System.out.println(SAT);
-        System.out.println(SUN);
+        System.out.println(staff_name);
+        System.out.println(staff_department);
+        System.out.println(staff_section);
 
+        Boolean Monday = parseBoolean(result[9]);
+        Boolean Tuesday = parseBoolean(result[10]);
+        Boolean Wednesday = parseBoolean(result[11]);
+        Boolean Thursday = parseBoolean(result[12]);
+        Boolean Friday = parseBoolean(result[13]);
+        Boolean Saturday = parseBoolean(result[14]);
+        Boolean Sunday = parseBoolean(result[15]);
+
+        System.out.println(Monday);
+        System.out.println(Tuesday);
+        System.out.println(Wednesday);
+        System.out.println(Thursday);
+        System.out.println(Friday);
+        System.out.println(Saturday);
+        System.out.println(Sunday);
+
+        DataLoading dataLoading = new DataLoading(staff_id, staff_name, staff_department, staff_section, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday);
+
+    }
+
+    public boolean parseBoolean(String s) {
+        double d = Double.parseDouble(s);
+        System.out.println(d);
+        return d != 0.0;
     }
 }

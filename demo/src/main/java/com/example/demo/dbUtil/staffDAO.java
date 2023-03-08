@@ -36,7 +36,7 @@ public class staffDAO {
         try (Connection connection = DataSource.getConnection()) {
             String sql = "INSERT INTO staff (staff_id, name, dept, section) VALUES (?,?,?,?)";
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, staff.getStaff_id());
+            stmt.setString(1, staff.getStaff_id());
             stmt.setString(2, staff.getName());
             stmt.setString(3, staff.getDept());
             stmt.setString(4, staff.getSection());
@@ -50,13 +50,13 @@ public class staffDAO {
     }
 
     // Get staff from staff table
-    public staff getStaff (int staff_id) {
+    public staff getStaff (String staff_id) {
         staff staff = new staff();
 
         try (Connection connection = DataSource.getConnection()) {
             String sql = "SELECT * FROM staff WHERE staff_id = ?";
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, staff_id);
+            stmt.setString(1, staff_id);
             stmt.executeQuery();
 
         } catch (SQLException e) {

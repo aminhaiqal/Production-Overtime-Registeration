@@ -35,7 +35,7 @@ public class TableLoader {
         List<String> tables = jdbcTemplate.queryForList("SHOW TABLES", String.class);
         if (!tables.contains("staff")) {
             jdbcTemplate.execute("CREATE TABLE staff ("
-                    + "staff_id INT NOT NULL,"
+                    + "staff_id VARCHAR(22) NOT NULL,"
                     + "name MEDIUMTEXT NOT NULL,"
                     + "dept VARCHAR(55),"
                     + "section VARCHAR(45) NOT NULL,"
@@ -45,7 +45,7 @@ public class TableLoader {
         }
         if (!tables.contains("overtime")) {
             jdbcTemplate.execute("CREATE TABLE overtime ("
-                    + "staff_id INT NOT NULL,"
+                    + "staff_id VARCHAR(22) NOT NULL,"
                     + "MON BOOLEAN,"
                     + "TUE BOOLEAN,"
                     + "WED BOOLEAN,"

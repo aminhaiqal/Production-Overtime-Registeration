@@ -22,7 +22,7 @@ public class overtimeDAO {
         try (Connection connection = DataSource.getConnection()) {
             String sql = "INSERT INTO overtime (staff_id, MON, TUE, WED, THU, FRI, SAT, SUN) VALUES (?,?,?,?,?,?,?,?)";
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, overtime.getStaff_id());
+            stmt.setString(1, overtime.getStaff_id());
             stmt.setBoolean(2, overtime.getMON());
             stmt.setBoolean(3, overtime.getTUE());
             stmt.setBoolean(4, overtime.getWED());
@@ -38,12 +38,12 @@ public class overtimeDAO {
     }
 
     // Get overtime from overtime table
-    public overtime getOvertime(int staff_id) {
+    public overtime getOvertime(String staff_id) {
         overtime overtime = new overtime();
         try (Connection connection = DataSource.getConnection()) {
             String sql = "SELECT * FROM overtime WHERE staff_id = ?";
             PreparedStatement stmt = connection.prepareStatement(sql);
-            stmt.setInt(1, staff_id);
+            stmt.setString(1, staff_id);
             stmt.executeQuery();
         } catch (SQLException e) {
             e.printStackTrace();

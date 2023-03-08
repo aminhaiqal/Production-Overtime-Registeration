@@ -6,7 +6,7 @@ import com.example.demo.model.overtime;
 import com.example.demo.model.staff;
 
 public class DataLoading {
-    public DataLoading(int staff_id, String name, String dept, String section, 
+    public DataLoading(String staff_id, String name, String dept, String section, 
                        Boolean MON, Boolean TUE, Boolean WED, Boolean THU, Boolean FRI, Boolean SAT, Boolean SUN) {
         staff staff = new staff(staff_id, name, dept, section);
         overtime overtime = new overtime(staff_id, MON, TUE, WED, THU, FRI, SAT, SUN);

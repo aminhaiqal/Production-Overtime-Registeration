@@ -1,7 +1,7 @@
 package com.example.demo.model;
 
 public class overtime {
-    private int staff_id;
+    private String staff_id;
     private boolean MON;
     private boolean TUE;
     private boolean WED;
@@ -12,7 +12,7 @@ public class overtime {
 
     public overtime() {}
 
-    public overtime(int staff_id, boolean MON, boolean TUE, boolean WED, boolean THU, boolean FRI, boolean SAT, boolean SUN) {
+    public overtime(String staff_id, boolean MON, boolean TUE, boolean WED, boolean THU, boolean FRI, boolean SAT, boolean SUN) {
         this.staff_id = staff_id;
         this.MON = MON;
         this.TUE = TUE;
@@ -23,7 +23,7 @@ public class overtime {
         this.SUN = SUN;
     }
 
-    public int getStaff_id() {
+    public String getStaff_id() {
         return staff_id;
     }
     public boolean getMON() {
