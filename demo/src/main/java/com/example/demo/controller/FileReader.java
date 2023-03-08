@@ -118,7 +118,7 @@ public class FileReader {
         System.out.println(Saturday);
         System.out.println(Sunday);
 
-        DataLoading dataLoading = new DataLoading(staff_id, staff_name, staff_department, staff_section, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday);
+        new DataLoading(staff_id, staff_name, staff_department, staff_section, Monday, Tuesday, Wednesday, Thursday, Friday, Saturday, Sunday);
 
     }
 
